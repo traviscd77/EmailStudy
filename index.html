@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An HTML and CSS recreation of a three-column mail interface.">
+  <title>Mail | Inbox</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Reusable, locally embedded icons; no external libraries required. -->
+<svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="mail" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="15" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="search-icon" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></symbol>
+  <symbol id="delete" viewBox="0 0 24 24"><path d="M3 5h18M9 5V2h6v3M6 5l1 17h10l1-17M10 9v9M14 9v9"/></symbol>
+  <symbol id="archive" viewBox="0 0 24 24"><path d="M4 8v13h16V8M9 12h6"/><rect x="2" y="3" width="20" height="5" rx="1"/></symbol>
+  <symbol id="shield" viewBox="0 0 24 24"><path d="m12 2 9 4v6c0 5-9 10-9 10S3 17 3 12V6zM12 6v7M12 16v1"/></symbol>
+  <symbol id="junk" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m5 5 14 14"/></symbol>
+  <symbol id="sweep" viewBox="0 0 24 24"><path d="m14 2 8 8-8 8-8-8zM2 14l6-6M1 20l7-7M8 23l5-5"/></symbol>
+  <symbol id="folder" viewBox="0 0 24 24"><path d="M2 5h8l2 3h10v13H2zM8 14h9m-3-3 3 3-3 3"/></symbol>
+  <symbol id="reply" viewBox="0 0 24 24"><path d="m10 3-8 7 8 7M3 10h10c6 0 8 4 8 10"/></symbol>
+  <symbol id="reply-all" viewBox="0 0 24 24"><path d="m8 3-7 7 7 7m6-14-7 7 7 7M8 10h6c5 0 8 4 8 10"/></symbol>
+  <symbol id="forward" viewBox="0 0 24 24"><path d="m14 3 8 7-8 7M21 10H11c-6 0-8 4-8 10"/></symbol>
+  <symbol id="tag" viewBox="0 0 24 24"><path d="M2 2h10l10 10-10 10L2 12z"/><circle cx="7" cy="7" r="1"/></symbol>
+</defs></svg>
+<header class="topbar">
+  <span class="app-name">Mail</span>
+  <div class="search-box"><svg class="icon" aria-hidden="true"><use href="#search-icon"/></svg><label class="sr-only" for="search">Search mail (visual demonstration)</label><input id="search" type="search" placeholder="Search"></div>
+  <div class="profile" aria-label="Alex Morgan">AM</div>
+</header>
+<!-- Visual demonstration: toolbar controls do not connect to a mail service. -->
+<nav class="toolbar" aria-label="Mail actions">
+  <button class="new-mail" type="button"><svg class="icon"><use href="#mail"/></svg>New mail</button>
+  <button type="button"><svg class="icon"><use href="#delete"/></svg>Delete</button>
+  <button type="button"><svg class="icon"><use href="#archive"/></svg>Archive</button>
+  <button type="button"><svg class="icon"><use href="#shield"/></svg>Report phishing</button>
+  <button type="button"><svg class="icon"><use href="#junk"/></svg>Report junk</button>
+  <button type="button"><svg class="icon"><use href="#sweep"/></svg>Sweep</button>
+  <button type="button"><svg class="icon"><use href="#folder"/></svg>Move to</button>
+  <button type="button"><svg class="icon"><use href="#reply"/></svg>Reply</button>
+  <button type="button"><svg class="icon"><use href="#reply-all"/></svg>Reply all</button>
+  <button type="button"><svg class="icon"><use href="#forward"/></svg>Forward</button>
+  <button type="button"><svg class="icon"><use href="#mail"/></svg>Unread</button>
+  <button type="button"><svg class="icon"><use href="#tag"/></svg>Categorize</button>
+</nav>
+<main class="mail-layout">
+  <aside class="folders" aria-label="Mail folders">
+    <nav><ul>
+      <li><button class="folder active" type="button" aria-current="page"><span>Inbox</span><span>12</span></button></li>
+      <li><button class="folder" type="button"><span>Drafts</span><span class="muted">2</span></button></li>
+      <li><button class="folder" type="button">Sent Items</button></li>
+      <li><button class="folder" type="button">Archive</button></li>
+      <li><button class="folder" type="button">Deleted Items</button></li>
+      <li><button class="folder" type="button">Junk Email</button></li>
+    </ul></nav>
+    <h2>Folders</h2>
+    <button class="folder" type="button">Projects</button>
+    <button class="folder" type="button">Receipts</button>
+  </aside>
+  <section class="inbox" aria-labelledby="inbox-heading">
+    <header class="inbox-heading"><h1 id="inbox-heading">Inbox</h1><button type="button">Filter</button></header>
+    <ul class="message-list">
+      <li class="message selected unread"><span class="avatar blue" aria-hidden="true">PN</span><div class="message-info"><div class="message-top"><span class="sender">Priya Nair</span><time datetime="2026-10-27T09:42">9:42 AM</time></div><p class="subject">Q4 planning offsite: agenda draft</p><p class="preview">Hi Alex, attaching the first pass at the agenda...</p></div></li>
+      <li class="message unread"><span class="avatar amber" aria-hidden="true">DO</span><div class="message-info"><div class="message-top"><span class="sender">Daniel Okafor</span><time datetime="2026-10-27T08:15">8:15 AM</time></div><p class="subject">Design review notes</p><p class="preview">Thanks for walking us through the new flow. A...</p></div></li>
+      <li class="message unread"><span class="avatar green" aria-hidden="true">HR</span><div class="message-info"><div class="message-top"><span class="sender">HR Team</span><span class="message-time">Yesterday</span></div><p class="subject">Open enrollment reminder</p><p class="preview">Benefits selections are due at the end of the month.</p></div></li>
+      <li class="message"><span class="avatar purple" aria-hidden="true">LC</span><div class="message-info"><div class="message-top"><span class="sender">Lena Cho</span><span class="message-time">Yesterday</span></div><p class="subject">Lunch on Thursday?</p><p class="preview">I found a new place near the office if you're free.</p></div></li>
+      <li class="message"><span class="avatar red" aria-hidden="true">FS</span><div class="message-info"><div class="message-top"><span class="sender">Finance Systems</span><span class="message-time">Mon</span></div><p class="subject">Expense report approved</p><p class="preview">Your report from the October trip has been approved.</p></div></li>
+    </ul>
+  </section>
+  <article class="reading-pane" aria-labelledby="email-subject">
+    <h2 id="email-subject">Q4 planning offsite: agenda draft</h2>
+    <header class="email-header"><span class="avatar blue" aria-hidden="true">PN</span><div class="email-people"><p><strong>Priya Nair</strong> <span class="muted email-address">&lt;priya.nair@northwind.example&gt;</span></p><p class="muted recipients">To: Alex Morgan; Daniel Okafor; Lena Cho</p></div><time datetime="2026-10-27T09:42">Tue 10/27/2026 9:42 AM</time></header>
+    <div class="email-body">
+      <p>Hi Alex,</p>
+      <p>I've put together a first pass at the agenda for the Q4 planning offsite. The goal is to keep the morning focused on priorities and use the afternoon for working sessions, so nobody spends the day in slides.</p>
+      <p>Draft outline:</p>
+      <ol><li>Welcome and goals for the quarter</li><li>Review of what shipped and what slipped</li><li>Priority setting, small groups</li><li>Working sessions by team</li><li>Wrap-up and owners for next steps</li></ol>
+      <p>Could you take a look and let me know if anything is missing, especially around the working sessions? I'd like to send the final version to the wider group by Friday. You can find the venue details <a href="#venue-details">here</a>.</p>
+      <p>Thanks,<br>Priya</p>
+      <div class="attachment" aria-label="Example attachment: Offsite-Agenda-v1.docx, 38 kilobytes"><span class="doc-icon">DOC</span><div><strong>Offsite-Agenda-v1.docx</strong><span class="muted file-size">38 KB</span></div></div>
+      <aside id="venue-details" class="venue-details"><h3>Venue details</h3><p>This is a visual mail demonstration. No venue or attachment file is included.</p></aside>
+    </div>
+  </article>
+</main>
+</body>
+</html>
