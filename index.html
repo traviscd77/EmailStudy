@@ -31,7 +31,7 @@
 <!-- Sample mail interface; no connection to an external mail service. -->
 <nav class="toolbar" aria-label="Mail actions">
   <button class="new-mail" type="button"><svg class="icon"><use href="#mail"/></svg>New mail</button>
-  <button type="button"><svg class="icon"><use href="#delete"/></svg>Delete</button>
+  <button id="delete-email" type="button"><svg class="icon"><use href="#delete"/></svg>Delete</button>
   <button type="button"><svg class="icon"><use href="#archive"/></svg>Archive</button>
   <button id="report-phishing" type="button"><svg class="icon"><use href="#shield"/></svg>Report phishing</button>
   <button id="report-junk" type="button"><svg class="icon"><use href="#junk"/></svg>Report junk</button>
@@ -49,9 +49,10 @@
       <li><button class="folder active" type="button" aria-current="page">Inbox</button></li>
       <li><button class="folder" type="button">Reported Phishing</button></li>
       <li><button class="folder" type="button">Junk Email</button></li>
+      <li><button class="folder" type="button">Deleted Items</button></li>
     </ul></nav>
     <p class="exercise-note">10 fictional emails. Read each message and report anything you consider phishing or junk.</p>
-    <details class="workplace-context"><summary>Campus context</summary><p>You are Alex Morgan, a student at fictional Lakeview University, enrolled in CIS 205. Sam Rivera and Jordan are in your project group.</p><p>University email addresses end in <strong>@lakeview.example</strong>. Campus sites include <strong>learn.lakeview.example</strong> (courses), <strong>files.lakeview.example</strong> (shared documents), <strong>portal.lakeview.example</strong> (student services), and <strong>library.lakeview.example</strong> (library).</p><p>You did not request the promotional messages in this inbox. Hover over a link to inspect its fictional destination. All links are inactive.</p></details>
+    <details class="workplace-context"><summary>Campus context</summary><p>You are Alex Morgan, a Carolina student at the University of South Carolina, enrolled in ITEC 101. Sam Rivera and Jordan are in your project group. The people and messages in this exercise are fictional.</p><p>Campus email formats used here are <strong>@email.sc.edu</strong> for students and <strong>@mailbox.sc.edu</strong> for faculty and staff. Your class uses <strong>blackboard.sc.edu</strong>; student services are available through <strong>my.sc.edu</strong>.</p><p>You did not request the promotional messages in this inbox. Hover over a link to inspect its simulated destination. All links are inactive.</p></details>
     <p id="report-summary" class="exercise-note"></p>
     <button id="reset-reports" class="reset-reports" type="button">Reset reports</button>
   </aside>
@@ -61,9 +62,11 @@
   </section>
   <article class="reading-pane" aria-labelledby="email-subject">
     <div class="reading-navigation"><span id="message-position"></span><div><button id="previous-email" type="button" aria-label="Previous email">← Previous</button><button id="next-email" type="button" aria-label="Next email">Next →</button></div></div>
+    <div id="delete-feedback" class="delete-feedback" role="status" aria-live="polite" hidden><span id="delete-feedback-text"></span><button id="undo-delete" type="button">Undo delete</button></div>
+    <div id="deleted-banner" class="delete-feedback" hidden><span>This email is in Deleted Items.</span><button id="restore-email" type="button">Restore to Inbox</button></div>
     <div id="report-banner" class="report-banner" role="status" aria-live="polite" hidden><span id="report-confirmation"></span><button id="undo-report" type="button">Undo report</button></div>
-    <h2 id="email-subject">CIS 205: case study materials for Thursday</h2>
-    <header class="email-header"><span class="avatar blue" aria-hidden="true">MC</span><div class="email-people"><p><strong>Dr. Maya Chen</strong> <span class="muted email-address">&lt;mchen@lakeview.example&gt;</span></p><p class="muted recipients">To: Alex Morgan &lt;amorgan@lakeview.example&gt;</p></div><time datetime="2026-10-27T10:55">Tue 10/27/2026 10:55 AM</time></header>
+    <h2 id="email-subject">ITEC 101: case study materials for Thursday</h2>
+    <header class="email-header"><span class="avatar blue" aria-hidden="true">MC</span><div class="email-people"><p><strong>Dr. Maya Chen</strong> <span class="muted email-address">&lt;mchen@mailbox.sc.edu&gt;</span></p><p class="muted recipients">To: Alex Morgan &lt;amorgan@email.sc.edu&gt;</p></div><time datetime="2026-10-27T10:55">Tue 10/27/2026 10:55 AM</time></header>
     <div class="email-body"><p>Loading your campus inbox…</p><noscript>Enable JavaScript to browse the sample emails and report messages.</noscript></div>
   </article>
 </main>
