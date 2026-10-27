@@ -175,6 +175,15 @@
     if(Array.isArray(saved))deleted=new Set(saved.filter(id=>emails.some(e=>e.id===id)));
   } catch { deletionStorageAvailable=false; }
   function persistDeleted(){try{localStorage.setItem(deletedStorageKey,JSON.stringify([...deleted]));}catch{deletionStorageAvailable=false;}}
+  const keptStorageKey='sample-mail-kept-carolina-v2';
+  let kept=new Set();
+  let keepStorageAvailable=true;
+  try {
+    const saved=JSON.parse(localStorage.getItem(keptStorageKey)||'[]');
+    if(Array.isArray(saved))kept=new Set(saved.filter(id=>emails.some(e=>e.id===id)&&!reports[id]));
+  } catch { keepStorageAvailable=false; }
+  function persistKept(){try{localStorage.setItem(keptStorageKey,JSON.stringify([...kept]));}catch{keepStorageAvailable=false;}}
+  const keepButton=document.querySelector('#keep-email');
   const deleteButton=document.querySelector('#delete-email');
   const reportPhishing=document.querySelector('#report-phishing');
   const reportJunk=document.querySelector('#report-junk');
@@ -184,7 +193,7 @@
   const buttons=[...document.querySelectorAll('.folder')];
   const folderNames=buttons.map(b=>b.textContent.trim().replace(/\s*\d+$/, ''));
   const textFromHTML=html=>{const t=document.createElement('div');t.innerHTML=html;return t.textContent.replace(/\s+/g,' ').trim();};
-  const inFolder=(e,name)=>deleted.has(e.id)?name==='Deleted Items':(name==='Inbox'||(name==='Reported Phishing'&&reports[e.id]==='phishing')||(name==='Junk Email'&&reports[e.id]==='junk'));
+  const inFolder=(e,name)=>deleted.has(e.id)?name==='Deleted Items':kept.has(e.id)?name==='Keep':(name==='Inbox'||(name==='Reported Phishing'&&reports[e.id]==='phishing')||(name==='Junk Email'&&reports[e.id]==='junk'));
   const visible=()=>emails.filter(e=>inFolder(e,folder) && (!query||`${e.sender} ${e.address} ${e.subject} ${textFromHTML(e.body)}`.toLowerCase().includes(query)));
   function updateFolders(){
     buttons.forEach((b,i)=>{
@@ -206,6 +215,7 @@
       b.innerHTML=`<span class="avatar ${e.color}" aria-hidden="true">${e.initials}</span><span class="message-info"><span class="message-top"><span class="sender"></span><time></time></span><span class="subject"></span><span class="preview"></span></span>`;
       b.querySelector('.sender').textContent=e.sender;b.querySelector('time').textContent=e.label;b.querySelector('time').dateTime=e.date;
       b.querySelector('.subject').textContent=e.subject;b.querySelector('.preview').textContent=textFromHTML(e.body);
+      if(kept.has(e.id)){const badge=document.createElement('span');badge.className='report-badge keep-badge';badge.textContent='Kept';b.querySelector('.message-info').append(badge);}
       if(reports[e.id]){const badge=document.createElement('span');badge.className='report-badge';badge.textContent=reports[e.id]==='phishing'?'Reported as phishing':'Reported as junk';b.querySelector('.message-info').append(badge);}
       b.addEventListener('click',()=>select(e.id,true));li.append(b);list.append(li);
     });
@@ -221,6 +231,11 @@
     document.querySelector('#message-position').textContent=has?`${index+1} of ${items.length}`:'0 emails';
     document.querySelector('#previous-email').disabled=index<=0;
     document.querySelector('#next-email').disabled=index<0||index>=items.length-1;
+    keepButton.disabled=!has||deleted.has(e?.id)||kept.has(e?.id);
+    const isKept=has&&kept.has(e.id)&&!deleted.has(e.id);
+    document.querySelector('#keep-banner').hidden=!isKept;
+    document.querySelector('#keep-confirmation').textContent=isKept?`Kept in the Keep folder. ${keepStorageAvailable?'Saved in this browser.':'Saved for this session only.'}`:'';
+    document.querySelector('#restore-email').textContent=has&&kept.has(e.id)?'Restore to Keep':'Restore to Inbox';
     deleteButton.disabled=!has||deleted.has(e?.id);
     document.querySelector('#deleted-banner').hidden=!has||!deleted.has(e?.id);
     reportPhishing.disabled=!has||deleted.has(e?.id)||reports[e?.id]==='phishing';
@@ -252,6 +267,7 @@
   function reportAs(type){
     if(!selected||deleted.has(selected))return;
     const e=emails.find(e=>e.id===selected);
+    kept.delete(selected);persistKept();
     reports[selected]=type;persist();
     // Keep the selected message visible when changing a report in a report folder.
     if(!inFolder(e,folder)){folder='Inbox';document.querySelector('#inbox-heading').textContent=folder;}
@@ -291,15 +307,30 @@
     const e=emails.find(e=>e.id===id);if(!e||!deleted.has(id))return;
     deleted.delete(id);persistDeleted();
     if(lastDeleted===id)lastDeleted=null;
-    folder='Inbox';query='';document.querySelector('#search').value='';
+    folder=kept.has(id)?'Keep':'Inbox';query='';document.querySelector('#search').value='';
     document.querySelector('#inbox-heading').textContent=folder;select(id);
-    showDeleteFeedback(`Restored “${e.subject}” to Inbox.${deletionStorageAvailable?'':' Saved for this session only.'}`);
+    showDeleteFeedback(`Restored “${e.subject}” to ${folder}.${deletionStorageAvailable?'':' Saved for this session only.'}`);
     list.querySelector(`[data-email-id="${id}"]`)?.focus({preventScroll:true});
   }
   document.querySelector('#undo-delete').addEventListener('click',()=>restoreEmail(lastDeleted));
   document.querySelector('#restore-email').addEventListener('click',()=>restoreEmail(selected));
+  keepButton.addEventListener('click',()=>{
+    const e=emails.find(e=>e.id===selected);if(!e||deleted.has(e.id)||kept.has(e.id))return;
+    delete reports[e.id];persist();kept.add(e.id);persistKept();
+    folder='Keep';document.querySelector('#inbox-heading').textContent=folder;
+    document.querySelector('#delete-feedback').hidden=true;
+    select(e.id);status.textContent=`Kept “${e.subject}” in the Keep folder.`;
+    document.querySelector('#undo-keep').focus({preventScroll:true});
+  });
+  document.querySelector('#undo-keep').addEventListener('click',()=>{
+    const e=emails.find(e=>e.id===selected);if(!e||!kept.has(e.id)||deleted.has(e.id))return;
+    kept.delete(e.id);persistKept();folder='Inbox';query='';document.querySelector('#search').value='';
+    document.querySelector('#inbox-heading').textContent=folder;select(e.id);
+    status.textContent=`Keep removed for “${e.subject}”. Returned to Inbox.`;
+    keepButton.focus({preventScroll:true});
+  });
   document.querySelectorAll('.toolbar button').forEach(b=>{
-    if(b===reportPhishing||b===reportJunk||b===deleteButton)return;
+    if(b===reportPhishing||b===reportJunk||b===deleteButton||b===keepButton)return;
     b.disabled=true;b.title='This action is unavailable in the sample inbox.';
   });
   // All message links are placeholders. Hover shows the fictional destination.

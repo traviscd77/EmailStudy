@@ -132,3 +132,9 @@ button:disabled { cursor: default; opacity: .48; }
 
 .email-image { display: block; width: 100%; max-width: 600px; aspect-ratio: 2.5 / 1; height: auto; object-fit: cover; border-radius: 5px; margin: 24px 0; background: #f2f2f2; }
 @media (max-width: 600px) { .email-image { aspect-ratio: 2 / 1; margin: 18px 0; } }
+
+#keep-email { order: -3; font-weight: 600; }
+.keep-banner { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; padding: 14px 16px; border: 1px solid #c1cddd; border-left: 4px solid #45688b; border-radius: 5px; background: #f1f5fa; color: #2b4a68; font-size: 15px; }
+.keep-banner button { padding: 7px 11px; border: 1px solid #a4b8ce; border-radius: 4px; background: #fff; color: var(--text); white-space: nowrap; }
+.keep-badge { background: #e6edf7; color: #2b4a68; }
+@media (max-width: 600px) { .keep-banner { flex-wrap: wrap; font-size: 14px; } }

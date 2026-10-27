@@ -165,3 +165,24 @@ is not an actual message or offer from the property. Earlier invented claims
 about a shuttle, individual leases, and waived application fees were removed.
 All links remain inactive and no external images or tracking were added.
 Official reference: https://www.vistacommons.com/
+
+KEEP FOLDER
+Keep is an explicit alternative to reporting or deleting. The Keep button moves
+the selected message into Keep and shows a neutral confirmation plus Kept badge.
+Undo keep returns it to Inbox. Keep is available regardless of the true category;
+no correctness feedback is given. Keeping removes a prior phishing/junk report,
+and reporting a kept message removes its Keep status, so these choices do not
+conflict. Reporting folders still follow the existing Inbox behavior.
+
+Keep choices persist in this browser, with a session-only fallback if storage is
+blocked. Deleted kept messages appear in Deleted Items; restoring returns them
+to Keep. Restore deleted messages before attempting to keep or report them.
+Reset reports clears report labels only; it does not clear Keep or Deleted Items.
+All 10 messages remain recoverable across the folders. No centralized study data
+collection or automatic accuracy scoring has been added.
+
+PARTICIPANT COPY UPDATE
+The sidebar uses the user's neutral instruction to decide what to do with each
+message. Campus context no longer states that promotions were unsolicited or
+explains hover behavior; its current rendered text is authoritative. The spam
+labels in this instructor guide remain the authored ground truth for the set.

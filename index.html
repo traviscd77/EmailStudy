@@ -32,7 +32,7 @@
 <nav class="toolbar" aria-label="Mail actions">
   <button class="new-mail" type="button"><svg class="icon"><use href="#mail"/></svg>New mail</button>
   <button id="delete-email" type="button"><svg class="icon"><use href="#delete"/></svg>Delete</button>
-  <button type="button"><svg class="icon"><use href="#archive"/></svg>Archive</button>
+  <button id="keep-email" type="button"><svg class="icon"><use href="#archive"/></svg>Keep</button>
   <button id="report-phishing" type="button"><svg class="icon"><use href="#shield"/></svg>Report phishing</button>
   <button id="report-junk" type="button"><svg class="icon"><use href="#junk"/></svg>Report junk</button>
   <button type="button"><svg class="icon"><use href="#sweep"/></svg>Sweep</button>
@@ -50,6 +50,7 @@
       <li><button class="folder" type="button">Reported Phishing</button></li>
       <li><button class="folder" type="button">Junk Email</button></li>
       <li><button class="folder" type="button">Deleted Items</button></li>
+      <li><button class="folder" type="button">Keep</button></li>
     </ul></nav>
     <p class="exercise-note">10 fictional emails. Read each message and decide what to do with each.</p>
     <details class="workplace-context"><summary>Campus context</summary><p>You are Alex Morgan, a student at the University of South Carolina, enrolled in ITEC 101. Sam Rivera and Jordan are in your project group. The people and messages in this exercise are fictional.</p><p>Campus email formats used here are <strong>@email.sc.edu</strong> for students and <strong>@mailbox.sc.edu</strong> for faculty and staff. Your class uses <strong>blackboard.sc.edu</strong>; student services are available through <strong>my.sc.edu</strong>.</p></details>
@@ -64,6 +65,7 @@
     <div class="reading-navigation"><span id="message-position"></span><div><button id="previous-email" type="button" aria-label="Previous email">← Previous</button><button id="next-email" type="button" aria-label="Next email">Next →</button></div></div>
     <div id="delete-feedback" class="delete-feedback" role="status" aria-live="polite" hidden><span id="delete-feedback-text"></span><button id="undo-delete" type="button">Undo delete</button></div>
     <div id="deleted-banner" class="delete-feedback" hidden><span>This email is in Deleted Items.</span><button id="restore-email" type="button">Restore to Inbox</button></div>
+    <div id="keep-banner" class="keep-banner" role="status" aria-live="polite" hidden><span id="keep-confirmation"></span><button id="undo-keep" type="button">Undo keep</button></div>
     <div id="report-banner" class="report-banner" role="status" aria-live="polite" hidden><span id="report-confirmation"></span><button id="undo-report" type="button">Undo report</button></div>
     <h2 id="email-subject">ITEC 101: case study materials for Thursday</h2>
     <header class="email-header"><span class="avatar blue" aria-hidden="true">MC</span><div class="email-people"><p><strong>Dr. Maya Chen</strong> <span class="muted email-address">&lt;mchen@mailbox.sc.edu&gt;</span></p><p class="muted recipients">To: Alex Morgan &lt;amorgan@email.sc.edu&gt;</p></div><time datetime="2026-10-27T10:55">Tue 10/27/2026 10:55 AM</time></header>
