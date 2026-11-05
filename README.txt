@@ -16,14 +16,14 @@ The filenames are neutral so they do not reveal the correct classification.
 
 Page             Subject
 email-01.html    ITEC 101: case study materials for Thursday
-email-02.html    Fall semester refund preference review
-email-03.html    Study break special: large pizza + two sides for $14.99
+email-02.html    Action required today: confirm your refund before 5 p.m.
+email-03.html    Tonight only: large pizza + two sides for $14.99
 email-04.html    Library reminder: your loan is due October 30
-email-05.html    Student research assistant opening — application details
-email-06.html    Looking for housing next year? Explore Vista Commons
+email-05.html    Research assistant shortlist — availability needed by 2 p.m.
+email-06.html    Alex, planning housing for next year?
 email-07.html    ITEC 101 group project — library at 4?
-email-08.html    ITEC 101 group project — survey summary added
-email-09.html    Before you buy next term’s books: compare rental prices
+email-08.html    ITEC 101 group project — quick check before we meet?
+email-09.html    Spring course materials: a short planning checklist
 email-10.html    Your advising appointment: Wednesday at 10:30
 
 Categorization
@@ -45,3 +45,8 @@ Deleted Items. Browser storage must be enabled to retain decisions between pages
 Use a separate browser profile for concurrent participants.
 
 The original four regular, three junk, and three phishing emails are preserved.
+
+Revised stimuli
+The six phishing and junk messages now have intended easy, medium, and hard
+levels. INSTRUCTOR-KEY.txt explains the distinctions; keep it away from the
+participant website. Levels are design targets, not validated difficulty scores.

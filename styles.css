@@ -140,3 +140,21 @@ button:disabled { cursor: default; opacity: .48; }
 @media (max-width: 600px) { .keep-banner { flex-wrap: wrap; font-size: 14px; } }
 /* Email rows are real hyperlinks with the original inbox appearance. */
 a.message-button { color: inherit; text-decoration: none; cursor: pointer; }
+
+/* Fictional message-specific formatting; difficulty never appears in the inbox. */
+.message-card { max-width: 640px; margin: 24px 0; border: 1px solid #dedede; background: #fff; }
+.message-brand { padding: 22px 24px; font-weight: 700; letter-spacing: .035em; line-height: 1.4; }
+.message-brand span { display: block; margin-top: 5px; font-weight: 400; font-size: .8em; letter-spacing: 0; }
+.garnet-brand { background: #73000a; color: #fff; }
+.neutral-brand { background: #f2f5f8; color: #24425a; border-bottom: 3px solid #48677d; }
+.pizza-brand { background: #873518; color: #fff; }
+.newsletter-brand { background: #f1f2ee; color: #354a3d; border-bottom: 1px solid #d9ded8; }
+.message-card-content { padding: 0 24px 5px; }
+.email-body .message-eyebrow { font-size: .73em; font-weight: 600; letter-spacing: .07em; color: #656565; margin-top: 23px; }
+.email-body .message-reference { font-size: .8em; line-height: 1.6; color: #606060; }
+.message-footer { padding: 16px 24px; background: #f7f7f7; border-top: 1px solid #e5e5e5; color: #606060; font-size: .75em; line-height: 1.65; }
+.email-body a.message-cta { display: inline-block; padding: 11px 18px; background: #106ebe; color: white; border-radius: 3px; text-decoration: none; font-weight: 600; }
+.email-body .promotion-image { margin: 0; max-width: 100%; border-radius: 0; }
+.promotion-headline { font-size: 1.5em; line-height: 1.25; margin: 16px 0; }
+.email-body .newsletter-checklist { list-style: decimal; }
+@media (max-width: 600px) { .message-brand, .message-card-content, .message-footer { padding-inline: 16px; } }

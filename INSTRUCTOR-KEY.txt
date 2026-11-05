@@ -1,0 +1,60 @@
+INSTRUCTOR ONLY — DO NOT SERVE THIS FILE TO PARTICIPANTS
+
+The intended difficulty levels below need pilot testing; they are not validated.
+The answer key and difficulty labels are not rendered in the participant inbox.
+The static JavaScript source includes the answer key as it did before. Anyone
+inspecting source can read it. Keep this file and README outside the public web
+folder if you want to avoid exposing researcher notes.
+
+PHISHING
+email-02.html — Refund — intended EASY
+Strong urgency: 5 p.m. today, with a claimed payment hold. Institutional branding,
+account reference, and polished writing add realism. Requests a university login
+and bank-account confirmation through carolina-studentservices.com, which is
+not sc.edu. Sender also uses that external domain.
+
+email-05.html — Research assistant shortlist — intended MEDIUM
+Plausible wages and work, a personalized selection claim, and a 2 p.m. interview
+scheduling deadline create opportunity pressure. Sender carolina-careers.org is
+external; careers.sc.edu.student-applicant-services.com is controlled under
+student-applicant-services.com, not sc.edu. The message funnels a university
+login into that workspace.
+
+email-08.html — Group survey summary — intended HARD
+A familiar peer identity, course details, and a plausible project deadline add
+credibility. The apparent sender is unchanged from the legitimate group email;
+this simulates spoofing or a compromised account without asserting which.
+The key clue is the hover destination blackboard.sc-edu.com rather than
+blackboard.sc.edu, combined with a request to sign in again. Sender familiarity
+and urgency alone do not determine whether a message is phishing.
+
+JUNK / UNSOLICITED COMMERCIAL EMAIL
+email-03.html — Pizza — intended EASY
+Prominent product, price, coupon, and tonight-only deadline make the sales
+purpose clear. Commercial sender and matching commercial link destinations.
+
+email-06.html — Apartment outreach — intended MEDIUM
+A personal greeting and conversational leasing representative make the message
+look like individual correspondence. Limited tour appointments add mild time
+pressure. The stated outreach purpose and opt-out disclose a commercial pitch.
+
+email-09.html — Course materials checklist — intended HARD
+Useful academic planning advice and a restrained newsletter layout precede a
+commercial comparison guide. Early rental rates add mild urgency. The footer
+discloses an independent marketplace and sponsored seller listings.
+
+All three junk messages are unsolicited in the supplied Campus context. They
+promote products or services without a credential theft pretext. Urgency can
+appear in legitimate and promotional mail too. A commercial domain alone is
+not evidence of phishing. Do not tell participants to classify solely by tone,
+formatting, or time pressure. All message-body links remain inactive simulations.
+
+REGULAR EMAILS (unchanged)
+email-01.html — Course materials
+email-04.html — Library reminder
+email-07.html — Group meeting
+email-10.html — Advising appointment
+
+Study design note: presentation, length, urgency, and difficulty vary together
+in this stimulus set. To isolate urgency as a causal factor, create matched
+versions and counterbalance them. Pilot difficulty before the main study.
