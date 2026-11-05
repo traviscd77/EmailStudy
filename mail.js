@@ -309,9 +309,17 @@
     reportPhishing.focus({preventScroll:true});
   });
   document.querySelector('#reset-reports').addEventListener('click',()=>{
-    reports={};persist();folder='Inbox';query='';selected=emails[0].id;
+    reports={};persist();
+    deleted.clear();persistDeleted();
+    kept.clear();persistKept();
+    lastDeleted=null;
+    try { sessionStorage.removeItem('sample-mail-last-deleted-v1'); } catch {}
+    folder='Inbox';query='';
     document.querySelector('#search').value='';document.querySelector('#inbox-heading').textContent=folder;
-    reconcile();status.textContent='All reports cleared. Deleted emails remain in Deleted Items.';
+    document.querySelector('#delete-feedback').hidden=true;
+    document.querySelector('#undo-delete').hidden=true;
+    reconcile();
+    status.textContent='All categories reset. All 10 emails are back in Inbox.';
   });
   function showDeleteFeedback(message,canUndo=false){
     document.querySelector('#delete-feedback-text').textContent=message;

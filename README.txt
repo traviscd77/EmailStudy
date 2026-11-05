@@ -40,8 +40,9 @@ Study sessions
 The website does not send results to a server or collect gaze data. Your external
 software records page visits and gaze. Browser storage is not a research database.
 Use a fresh browser profile or clear this site's browser storage between participants.
-The existing Reset reports button only clears reports; it does not clear Keep or
-Deleted Items. Browser storage must be enabled to retain decisions between pages.
+Reset reports clears Reported Phishing, Junk Email, Deleted Items, and Keep,
+returns all ten messages to Inbox, and removes the previous deletion undo state.
+Browser storage must be enabled to retain decisions between pages.
 Use a separate browser profile for concurrent participants.
 
 The original four regular, three junk, and three phishing emails are preserved.
